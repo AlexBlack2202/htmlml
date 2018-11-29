@@ -147,16 +147,17 @@ function main() {
     if (isRunning) {
       isRunning = false;
       document.getElementById('startStopButton').innerHTML = 'Start';
-      document.getElementById('addPersonButton').disabled = true;
+     // document.getElementById('addPersonButton').disabled = true;
     } else {
       function run() {
         isRunning = true;
         captureFrame();
         document.getElementById('startStopButton').innerHTML = 'Stop';
         document.getElementById('startStopButton').disabled = false;
-        document.getElementById('addPersonButton').disabled = false;
+     //   document.getElementById('addPersonButton').disabled = false;
       }
-      if (netDet == undefined || netRecogn == undefined) {
+      //if (netDet == undefined || netRecogn == undefined)
+       {
         document.getElementById('startStopButton').disabled = true;
         loadModels(run);  // Load models and run a pipeline;
       } else {
