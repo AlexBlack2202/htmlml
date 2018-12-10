@@ -2,6 +2,9 @@ var netDet = undefined,
     netRecogn = undefined;
 var persons = {};
 var isRunning = false;
+  var cap;
+  var frame;
+  var frameBGR ;
 
 const FPS = 30; // Target number of frames processed per second.
 //! [Run face detection model]
@@ -72,9 +75,9 @@ function main() {
             };
         });
     //! [Open a camera stream]
-    var cap = new cv.VideoCapture(camera);
-    var frame = new cv.Mat(camera.height, camera.width, cv.CV_8UC4);
-    var frameBGR = new cv.Mat(camera.height, camera.width, cv.CV_8UC3);
+     cap = new cv.VideoCapture(camera);
+     frame = new cv.Mat(camera.height, camera.width, cv.CV_8UC4);
+     frameBGR = new cv.Mat(camera.height, camera.width, cv.CV_8UC3);
     //! [Open a camera stream]
     //! [Add a person]
 
