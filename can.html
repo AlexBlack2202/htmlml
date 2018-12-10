@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html><head>
-    <script async src="opencv.js" type="text/javascript"></script>
-    <script src="utils.js" type="text/javascript"></script>
+        <script async src="opencv.js" type="text/javascript"></script>
+        <script src="utils.js" type="text/javascript"></script>
 
-    <script type='text/javascript'>
+        <script type='text/javascript'>
 var netDet = undefined, netRecogn = undefined;
 var persons = {};
 //! [Run face detection model]
@@ -130,7 +130,7 @@ function detect_dau_can(img){
 //! [Run face detection model]
 //! [Get 128 floating points feature vector]
 function face2vec(face) {
-  var blob = cv.blobFromImage(face, 1.0 / 255, {width: 96, height: 96}, [0, 0, 0, 0], true, false)
+ var blob = cv.blobFromImage(face, 1.0 / 255, {width: 96, height: 96}, [0, 0, 0, 0], true, false)
   netRecogn.setInput(blob);
   var vec = netRecogn.forward();
   blob.delete();
@@ -197,7 +197,7 @@ function main() {
   var isRunning = false;
   const FPS = 30;  // Target number of frames processed per second.
   function captureFrame() {
-    var begin = Date.now();
+    var begin = Date.now(); 
     cap.read(frame);  // Read a frame from camera
    // cv.cvtColor(frame, frameBGR, cv.COLOR_RGBA2);
  
@@ -226,34 +226,31 @@ function main() {
   };
   //! [Define frames processing]
   document.getElementById('startStopButton').onclick = function toggle() {
-    if (isRunning) {
+if (isRunning) {
       isRunning = false;
       document.getElementById('startStopButton').innerHTML = 'Start';
-      document.getElementById('addPersonButton').disabled = true;
+    //  document.getElementById('addPersonButton').disabled = true;
     } else {
       function run() {
         isRunning = true;
         captureFrame();
         document.getElementById('startStopButton').innerHTML = 'Stop';
         document.getElementById('startStopButton').disabled = false;
-        document.getElementById('addPersonButton').disabled = false;
+     //   document.getElementById('addPersonButton').disabled = false;
       }
-      if (netDet == undefined || netRecogn == undefined) {
-        document.getElementById('startStopButton').disabled = true;
-        loadModels(run);  // Load models and run a pipeline;
-      } else {
-        run();
-      }
+
+      run();
+     
     }
   };
   document.getElementById('startStopButton').disabled = false;
 };
 </script>
-  </head>
+    </head>
 
-  <body onload="main()">
-    <button id="startStopButton" type="button" disabled="true">Start</button>
-    <div id="status"></div>
-    <canvas id="output" width=640 height=480 style="max-width: 100%"></canvas>
-  </body>
+    <body onload="main()">
+        <button id="startStopButton" type="button" disabled="true">Start</button>
+        <div id="status"></div>
+        <canvas id="output" width=640 height=480 style="max-width: 100%"></canvas>
+    </body>
 </html>
