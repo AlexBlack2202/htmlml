@@ -43,7 +43,11 @@ function main() {
     var camera = document.createElement("video");
     camera.setAttribute("width", output.width);
     camera.setAttribute("height", output.height);
-
+    const constraints = {
+        advanced: [{
+            facingMode: "environment"
+        }]
+    };
 
     navigator.mediaDevices.enumerateDevices()
   .then(function(devices) {
@@ -58,7 +62,7 @@ function main() {
 
     // Get a permission from user to use a camera.
     navigator.mediaDevices.getUserMedia({
-            video: true,
+            video: constraints,
             audio: false
         })
         .then(function (stream) {
