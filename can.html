@@ -8,10 +8,13 @@ var netDet = undefined, netRecogn = undefined;
 var persons = {};
 //! [Run face detection model]
 function detectFaces(img) {
+
+   var faces = [];
+   /*
   var blob = cv.blobFromImage(img, 1, {width: 128, height: 96}, [104, 177, 123, 0], false, false);
   netDet.setInput(blob);
   var out = netDet.forward();
-  var faces = [];
+ 
   for (var i = 0, n = out.data32F.length; i < n; i += 7) {
     var confidence = out.data32F[i + 2];
     var left = out.data32F[i + 3] * img.cols;
@@ -27,7 +30,7 @@ function detectFaces(img) {
     }
   }
   blob.delete();
-  out.delete();
+  out.delete();*/
   return faces;
 };
 
@@ -48,7 +51,12 @@ var estimate_height = height/ratio;
 }
 
 function detectHightlyObjectRegion(imgrgb){
-  var expected_width= 500
+
+
+  let return_lst =[];
+
+/*
+  var expected_width= 500;
 var scalergb = imgResize(imgrgb,500);
 var ratio = expected_width / imgrgb.cols;
 
@@ -88,7 +96,7 @@ var hierarchy = new cv.Mat();
 // You can try more different parameters
 cv.findContours(gray, contours, hierarchy, cv.RETR_CCOMP, cv.CHAIN_APPROX_SIMPLE);
 
-let return_lst =[]
+
 
 for (let i = 0; i < contours.size(); ++i) {
   let cnt = contours[i];
@@ -107,7 +115,7 @@ res.delete();
 
 gray.delete();
 contours.delete();
-hierarchy.delete();
+hierarchy.delete();*/
 return return_lst;
 }
 
@@ -147,6 +155,7 @@ function recognize(face) {
 };
 //! [Recognize]
 function loadModels(callback) {
+   callback();
   /* var utils = new Utils('');
   var proto = 'https://raw.githubusercontent.com/opencv/opencv/master/samples/dnn/face_detector/deploy.prototxt';
   var weights = 'https://raw.githubusercontent.com/opencv/opencv_3rdparty/dnn_samples_face_detector_20180205_fp16/res10_300x300_ssd_iter_140000_fp16.caffemodel';
