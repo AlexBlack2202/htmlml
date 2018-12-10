@@ -64,7 +64,21 @@ function main() {
     //! [Add a person]
     //! [Define frames processing]
     
+    document.getElementById('startStopButton').onclick = function toggle() {
+        if (isRunning) {
+            isRunning = false;
+            document.getElementById('startStopButton').innerHTML = 'Start';
+        } else {
+            function run() {
+                isRunning = true;
+                captureFrame();
+                document.getElementById('startStopButton').innerHTML = 'Stop';
+                document.getElementById('startStopButton').disabled = false;
+            }
+            run();
     
+        }
+    };
     
     //! [Define frames processing]
  
@@ -90,18 +104,3 @@ function captureFrame() {
     }
 };
 
-document.getElementById('startStopButton').onclick = function toggle() {
-    if (isRunning) {
-        isRunning = false;
-        document.getElementById('startStopButton').innerHTML = 'Start';
-    } else {
-        function run() {
-            isRunning = true;
-            captureFrame();
-            document.getElementById('startStopButton').innerHTML = 'Stop';
-            document.getElementById('startStopButton').disabled = false;
-        }
-        run();
-
-    }
-};
