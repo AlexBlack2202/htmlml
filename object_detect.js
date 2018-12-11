@@ -32,6 +32,8 @@ let res = new cv.Mat();
 let gray =new cv.Mat();
 cv.cvtColor(res, gray, cv.COLOR_RGBA2GRAY, 0);
 
+console.log('cvt color2');
+
 let thresh =new cv.Mat();
 cv.threshold(gray, thresh, 3, 255, cv.THRESH_BINARY);
 let contours = new cv.MatVector();
@@ -153,7 +155,8 @@ function captureFrame() {
     cap.read(frame); // Read a frame from camera
     // cv.cvtColor(frame, frameBGR, cv.COLOR_RGBA2BGR);
 
-    cv.cvtColor(frame,frameHSV,cv.COLOR_RGB2HSV)
+    cv.cvtColor(frame,frameHSV,cv.COLOR_RGB2HSV);
+    console.log('cvt color1');
     var faces = detectFaces(frameHSV);
     faces.forEach(function(rect) {
       cv.rectangle(frame, {x: rect[0], y: rect[1]}, {x: rect[0]+rect[2], y: rect[1] + rect[3]}, [0, 255, 0, 255]);
