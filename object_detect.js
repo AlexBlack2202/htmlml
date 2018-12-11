@@ -123,7 +123,7 @@ function main() {
      cap = new cv.VideoCapture(camera);
      frame = new cv.Mat(camera.height, camera.width, cv.CV_8UC4);
    //  frameBGR = new cv.Mat(camera.height, camera.width, cv.CV_8UC3);
-   frameHSV =new cv.MAt();
+   frameHSV =new cv.Mat();
     //! [Open a camera stream]
     //! [Add a person]
 
