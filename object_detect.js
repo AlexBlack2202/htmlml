@@ -114,8 +114,9 @@ function captureFrame() {
       cv.rectangle(frame, {x: rect[0], y: rect[1]}, {x: rect[0]+rect[2], y: rect[1] + rect[3]}, [0, 255, 0, 255]);
     //   var face = frameBGR.roi(rect);
     //   var name = recognize(face);
-      cv.putText(frame, name, {x: rect.x, y: rect.y}, cv.FONT_HERSHEY_SIMPLEX, 1.0, [0, 255, 0, 255]);
+     
     });
+    cv.putText(frame, "alex debug", {x:20, y: 20}, cv.FONT_HERSHEY_SIMPLEX, 1.0, [0, 255, 0, 255]);
     cv.imshow(output, frame);
     // Loop this function.
     if (isRunning) {
