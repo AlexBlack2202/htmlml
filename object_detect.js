@@ -41,6 +41,7 @@ let hierarchy = new cv.Mat();
 // You can try more different parameters
 cv.findContours(thresh, contours, hierarchy, cv.RETR_CCOMP, cv.CHAIN_APPROX_SIMPLE);
 // draw contours with random Scalar
+console.log(contours.size());
 for (let i = 0; i < contours.size(); ++i) {
     let area = cv.contourArea(contours[i], false);
     let rect = cv.boundingRect(contours[i]);
