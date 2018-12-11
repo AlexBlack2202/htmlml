@@ -119,7 +119,7 @@ function captureFrame() {
       cv.rectangle(frame, {x: rect.x, y: rect.y}, {x: rect.x+rect.width, y: rect.y+ rect.height}, [0, 255, 0, 255]);
     //   var face = frameBGR.roi(rect);
     //   var name = recognize(face);
-    var face = frameBGR.roi(rect);
+    var face = frame.roi(rect);
     
     cv.imshow(tmpoutput, face);
     let base64str = tmpoutput.toDataURL();
