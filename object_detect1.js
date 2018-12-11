@@ -20,9 +20,11 @@ let high = new cv.Mat(frameHSV.rows, frameHSV.cols, frameHSV.type(), [130,255,25
     let mask = new cv.Mat();
     // You can try more different parameters
     cv.inRange(frameHSV, low, high, mask);
+
+    cv.imshow(output, mask);
 let res = new cv.Mat();
     cv.bitwise_and(frame, frame, res, mask);
-
+    cv.imshow(output, res);
 //     let anchor = new cv.Point(5, 5);
 // // You can try more different parameters
 // cv.dilate(dst, dst, M, anchor, 1, cv.BORDER_CONSTANT, cv.morphologyDefaultBorderValue());
@@ -31,11 +33,12 @@ let res = new cv.Mat();
 
 let gray =new cv.Mat();
 cv.cvtColor(res, gray, cv.COLOR_RGBA2GRAY, 0);
-
+cv.imshow(output, gray);
 console.log('cvt color2');
 
 let thresh =new cv.Mat();
 cv.threshold(gray, thresh, 3, 255, cv.THRESH_BINARY);
+cv.imshow(output, thresh);
 let contours = new cv.MatVector();
 let hierarchy = new cv.Mat();
 // You can try more different parameters
