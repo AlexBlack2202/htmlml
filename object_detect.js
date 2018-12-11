@@ -54,7 +54,8 @@ for (let i = 0; i < contours.size(); ++i) {
 gray.delete();
 thresh.delete();
 // src.delete(); 
-dst.delete(); contours.delete(); hierarchy.delete();
+// dst.delete();
+ contours.delete(); hierarchy.delete();
 mask.delete();
 res.delete();
     return faces;
