@@ -159,6 +159,7 @@ function main() {
     document.getElementById('startStopButton').disabled = false;
 };
 
+
 document.getElementById('abcbutton').onclick = function toggle() {
     captureFrame();
 };
@@ -179,9 +180,6 @@ function captureFrame() {
     cv.putText(frame, "Nu: "+faces.length+" time: "+begin , {x:20, y: 20}, cv.FONT_HERSHEY_SIMPLEX, 1.0, [0, 255, 0, 255]);
     cv.imshow(output, frame);
     // Loop this function.
-    if (isRunning) {
-        var delay = 1000 / FPS - (Date.now() - begin);
-        setTimeout(captureFrame, delay);
-    }
+   
 };
 
