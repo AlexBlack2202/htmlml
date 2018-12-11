@@ -9,7 +9,7 @@ var isRunning = false;
 
 const FPS = 30; // Target number of frames processed per second.
 //! [Run face detection model]
-function detectFaces() {
+function detectFaces(frameHSV) {
    let  faces =[];
     //# define range of blue color in HSV
   //  lower_blue = np.array([110,50,50])
