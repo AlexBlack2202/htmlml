@@ -10,7 +10,7 @@ const FPS = 30; // Target number of frames processed per second.
 //! [Run face detection model]
 function detectFaces(img) {
 
-    var faces = []
+    var faces = [[10,10,100,100]];
     return faces;
 }
 
@@ -109,13 +109,13 @@ function captureFrame() {
     var begin = Date.now();
     cap.read(frame); // Read a frame from camera
     cv.cvtColor(frame, frameBGR, cv.COLOR_RGBA2BGR);
-    // var faces = detectFaces(frameBGR);
-    // faces.forEach(function(rect) {
-    //   cv.rectangle(frame, {x: rect.x, y: rect.y}, {x: rect.x + rect.width, y: rect.y + rect.height}, [0, 255, 0, 255]);
+    var faces = detectFaces(frameBGR);
+    faces.forEach(function(rect) {
+      cv.rectangle(frame, {x: rect[0], y: rect[1]}, {x: rect[0]+rect[2], y: rect[1] + rect[3]}, [0, 255, 0, 255]);
     //   var face = frameBGR.roi(rect);
     //   var name = recognize(face);
-    //   cv.putText(frame, name, {x: rect.x, y: rect.y}, cv.FONT_HERSHEY_SIMPLEX, 1.0, [0, 255, 0, 255]);
-    // });
+      cv.putText(frame, name, {x: rect.x, y: rect.y}, cv.FONT_HERSHEY_SIMPLEX, 1.0, [0, 255, 0, 255]);
+    });
     cv.imshow(output, frame);
     // Loop this function.
     if (isRunning) {
