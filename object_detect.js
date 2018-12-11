@@ -165,7 +165,7 @@ function captureFrame() {
     // cv.cvtColor(frame, frameBGR, cv.COLOR_RGBA2BGR);
 
     cv.cvtColor(frame,frameHSV,cv.COLOR_RGB2HSV);
-    console.log('cvt color1');
+    console.log('cvt color1 '+frame.size());
     var faces = detectFaces(frameHSV);
     faces.forEach(function(rect) {
       cv.rectangle(frame, {x: rect[0], y: rect[1]}, {x: rect[0]+rect[2], y: rect[1] + rect[3]}, [0, 255, 0, 255]);
