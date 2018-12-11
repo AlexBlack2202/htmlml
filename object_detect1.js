@@ -125,15 +125,35 @@ function captureFrame() {
     let base64str = tmpoutput.toDataURL();
     base64str = base64str.replace("data:image/png;base64,","");
 
-    const url = "10.1.36.207:5000/DetectCanNumber";
+    const url = "https://ai.thegioididong.com/BHXImage/CanBase64";
 
     var formData = new FormData();
-formData.append('imageurl', base64str);
+formData.append('base64str', base64str);
 var request = new XMLHttpRequest();
 // POST to httpbin which returns the POST data as JSON
 request.open('POST', url, /* async = */ false);
 request.send(formData);
 console.log(request.response);
+
+// jQuery.ajax({
+//     url: url,
+//     data: formData,
+//     cache: false,
+//     contentType: false,
+//     processData: false,
+//     type: 'GET',
+//     success: function(data){
+//         alert(data);
+//     }
+// });
+
+// fetch(url, {
+//     method: "POST", 
+//     body: formData
+//   }).then(res => {
+//     console.log("Request complete! response:", res);
+//   });
+
     });
     cv.putText(frame, "Nu: "+faces.length , {x:20, y: 20}, cv.FONT_HERSHEY_SIMPLEX, 1.0, [0, 255, 0, 255]);
     cv.imshow(output, frame);
