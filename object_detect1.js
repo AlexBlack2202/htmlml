@@ -159,10 +159,13 @@ function main() {
     document.getElementById('startStopButton').disabled = false;
 };
 
+document.getElementById('abcbutton').onclick = function toggle() {
+    captureFrame();
+};
+
 function captureFrame() {
-    var begin = Date.now();
-    cap.read(frame); // Read a frame from camera
-    // cv.cvtColor(frame, frameBGR, cv.COLOR_RGBA2BGR);
+    
+    frame = cv.imread('canvasInput');
 
     cv.cvtColor(frame,frameHSV,cv.COLOR_RGB2HSV);
     console.log('cvt color1 '+frame.size());
