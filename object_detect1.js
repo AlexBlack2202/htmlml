@@ -95,75 +95,14 @@ function recognize(face) {
 };
 
 function main() {
-    var output = document.getElementById('output');
-    var camera = document.createElement("video");
-    camera.setAttribute("width", output.width);
-    camera.setAttribute("height", output.height);
-    const constraints = {
-        advanced: [{
-            facingMode: "environment"
-        }]
-    };
-
-    navigator.mediaDevices.enumerateDevices()
-  .then(function(devices) {
-    devices.forEach(function(device) {
-      console.log(device.kind + ": " + device.label +
-        " id = " + device.deviceId);
-    });
-  })
-  .catch(function(err) {
-    console.log(err.name + ": " + error.message);
-  });
-
-    // Get a permission from user to use a camera.
-    navigator.mediaDevices.getUserMedia({
-            video: constraints,
-            audio: false
-        })
-        .then(function (stream) {
-            camera.srcObject = stream;
-            camera.onloadedmetadata = function (e) {
-                camera.play();
-            };
-        });
-    //! [Open a camera stream]
-     cap = new cv.VideoCapture(camera);
-     frame = new cv.Mat(camera.height, camera.width, cv.CV_8UC4);
-   //  frameBGR = new cv.Mat(camera.height, camera.width, cv.CV_8UC3);
-   frameHSV =new cv.Mat();
-    //! [Open a camera stream]
-    //! [Add a person]
-
-    //! [Add a person]
-    //! [Define frames processing]
-    
-    document.getElementById('startStopButton').onclick = function toggle() {
-        if (isRunning) {
-            isRunning = false;
-            document.getElementById('startStopButton').innerHTML = 'Start';
-        } else {
-            function run() {
-                isRunning = true;
-                captureFrame();
-                document.getElementById('startStopButton').innerHTML = 'Stop';
-                document.getElementById('startStopButton').disabled = false;
-            }
-            run();
-    
-        }
-    };
-    
-    //! [Define frames processing]
  
-    document.getElementById('startStopButton').disabled = false;
-};
-
-
 document.getElementById('abcbutton').onclick = function toggle() {
     console.log('click capture ');
     captureFrame();
 };
+};
+
+
 
 function captureFrame() {
     
