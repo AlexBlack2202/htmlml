@@ -5,12 +5,55 @@ var isRunning = false;
   var cap;
   var frame;
   var frameBGR ;
+  var frameHSV ;
 
 const FPS = 30; // Target number of frames processed per second.
 //! [Run face detection model]
-function detectFaces(img) {
+function detectFaces() {
+   let  faces =[];
+    //# define range of blue color in HSV
+  //  lower_blue = np.array([110,50,50])
+  //  upper_blue = np.array([130,255,255])
+    let low = new cv.Mat(src.rows, src.cols, src.type(), [110,50,50]);
+let high = new cv.Mat(src.rows, src.cols, src.type(), [130,255,255]);
+    //# Threshold the HSV image to get only blue colors
+    let mask = new cv.Mat();
+    // You can try more different parameters
+    cv.inRange(frameHSV, low, high, mask);
+let res = new cv.Mat();
+    cv.bitwise_and(frameHSV, frameHSV, res, mask);
 
-    var faces = [[10,10,100,100]];
+//     let anchor = new cv.Point(5, 5);
+// // You can try more different parameters
+// cv.dilate(dst, dst, M, anchor, 1, cv.BORDER_CONSTANT, cv.morphologyDefaultBorderValue());
+
+
+
+let gray =new cv.Mat();
+cv.cvtColor(res, gray, cv.COLOR_RGBA2GRAY, 0);
+
+let thresh =new cv.Mat();
+cv.threshold(gray, thresh, 3, 255, cv.THRESH_BINARY);
+let contours = new cv.MatVector();
+let hierarchy = new cv.Mat();
+// You can try more different parameters
+cv.findContours(thresh, contours, hierarchy, cv.RETR_CCOMP, cv.CHAIN_APPROX_SIMPLE);
+// draw contours with random Scalar
+for (let i = 0; i < contours.size(); ++i) {
+    let area = cv.contourArea(contours[i], false);
+    let rect = cv.boundingRect(contours[i]);
+
+    if(area<50) continue;
+
+    if (rect.width<rect.height*1.3) continue;
+
+    faces.push([rect.x,rect.y,rect.width,rect.height]);
+}
+gray.delete();
+thresh.delete();
+src.delete(); dst.delete(); contours.delete(); hierarchy.delete();
+mask.delete();
+res.delete();
     return faces;
 }
 
@@ -109,6 +152,8 @@ function captureFrame() {
     var begin = Date.now();
     cap.read(frame); // Read a frame from camera
     cv.cvtColor(frame, frameBGR, cv.COLOR_RGBA2BGR);
+
+    cv.cvtColor(frameBGR,frameHSV,cv.cv.COLOR_BGR2HSV)
     var faces = detectFaces(frameBGR);
     faces.forEach(function(rect) {
       cv.rectangle(frame, {x: rect[0], y: rect[1]}, {x: rect[0]+rect[2], y: rect[1] + rect[3]}, [0, 255, 0, 255]);
