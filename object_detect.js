@@ -151,10 +151,10 @@ function main() {
 function captureFrame() {
     var begin = Date.now();
     cap.read(frame); // Read a frame from camera
-    cv.cvtColor(frame, frameBGR, cv.COLOR_RGBA2BGR);
+    // cv.cvtColor(frame, frameBGR, cv.COLOR_RGBA2BGR);
 
-    cv.cvtColor(frameBGR,frameHSV,cv.cv.COLOR_BGR2HSV)
-    var faces = detectFaces(frameBGR);
+    cv.cvtColor(frame,frameHSV,cv.COLOR_RGB2HSV)
+    var faces = detectFaces(frameHSV);
     faces.forEach(function(rect) {
       cv.rectangle(frame, {x: rect[0], y: rect[1]}, {x: rect[0]+rect[2], y: rect[1] + rect[3]}, [0, 255, 0, 255]);
     //   var face = frameBGR.roi(rect);
