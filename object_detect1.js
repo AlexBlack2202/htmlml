@@ -9,7 +9,7 @@ var isRunning = false;
 
 const FPS = 30; // Target number of frames processed per second.
 //! [Run face detection model]
-function detectFaces(frameHSV) {
+function detectFaces(frame,frameHSV) {
    let  faces =[];
     //# define range of blue color in HSV
   //  lower_blue = np.array([110,50,50])
@@ -21,7 +21,7 @@ let high = new cv.Mat(frameHSV.rows, frameHSV.cols, frameHSV.type(), [130,255,25
     // You can try more different parameters
     cv.inRange(frameHSV, low, high, mask);
 let res = new cv.Mat();
-    cv.bitwise_and(frameHSV, frameHSV, res, mask);
+    cv.bitwise_and(frame, frame, res, mask);
 
 //     let anchor = new cv.Point(5, 5);
 // // You can try more different parameters
@@ -111,7 +111,7 @@ function captureFrame() {
     cv.cvtColor(frame,frameHSV,cv.COLOR_RGB2HSV);
 
     console.log('cvt color1 ');
-    var faces = detectFaces(frameHSV);
+    var faces = detectFaces(frame,frameHSV);
     faces.forEach(function(rect) {
       cv.rectangle(frame, {x: rect[0], y: rect[1]}, {x: rect[0]+rect[2], y: rect[1] + rect[3]}, [0, 255, 0, 255]);
     //   var face = frameBGR.roi(rect);
