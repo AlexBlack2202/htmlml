@@ -125,7 +125,7 @@ function captureFrame() {
     let base64str = tmpoutput.toDataURL();
     base64str = base64str.replace("data:image/png;base64,","");
 
-    const url = "http://10.1.36.207:5000/DetectCanNumber";
+    const url = "10.1.36.207:5000/DetectCanNumber";
 
     var formData = new FormData();
 formData.append('imageurl', base64str);
