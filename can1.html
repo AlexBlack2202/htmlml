@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head>
+        <script async src="opencv.js" type="text/javascript"></script>
+        <script data-cfasync="false"  src="utils.js" type="text/javascript"></script>
+      
+
+        <script data-cfasync="false" src="object_detect1.js" type="text/javascript"></script>
+    </head>
+
+    <body>
+        
+         <button id="abcbutton" type="button" style="width:150px;">abc</button>
+        <div id="status"></div>
+        <canvas id="canvasInput" width=640 height=480 style="max-width: 100%"></canvas>
+        <canvas id="output" width=640 height=480 style="max-width: 100%"></canvas>
+    </body>
+     <script data-cfasync="false"  type ="text/javascript">
+     let utils = new Utils('errorMessage');
+        utils.loadImageToCanvas('abc.jpg', 'canvasInput');
+        </script>
+</html>
