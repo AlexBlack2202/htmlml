@@ -107,7 +107,7 @@ document.getElementById('abcbutton').onclick = function toggle() {
 function captureFrame() {
     
     frame = cv.imread('canvasInput');
-    frameHSV = new Mat();
+    frameHSV = new cv.Mat();
     cv.cvtColor(frame,frameHSV,cv.COLOR_RGB2HSV);
 
     console.log('cvt color1 ');
