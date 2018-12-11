@@ -173,7 +173,7 @@ function captureFrame() {
     //   var name = recognize(face);
      
     });
-    cv.putText(frame, "alex debug "+faces.length+" time: "+begin , {x:20, y: 20}, cv.FONT_HERSHEY_SIMPLEX, 1.0, [0, 255, 0, 255]);
+    cv.putText(frame, "Nu: "+faces.length+" time: "+begin , {x:20, y: 20}, cv.FONT_HERSHEY_SIMPLEX, 1.0, [0, 255, 0, 255]);
     cv.imshow(output, frame);
     // Loop this function.
     if (isRunning) {
