@@ -46,7 +46,7 @@ console.log(contours.size());
 
 for (let i = 0; i < contours.size(); i++) {
 
-    let cnt = contours.get(0);
+    let cnt = contours.get(i);
   
     let area = cv.contourArea(cnt, false);
     let rect = cv.boundingRect(cnt);
