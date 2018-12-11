@@ -129,21 +129,11 @@ function captureFrame() {
 
     var formData = new FormData();
 formData.append('imageurl', base64str);
-fetch(url, {
-    method : "POST",
-    body: formData,
-    // -- or --
-    // body : JSON.stringify({
-    //     user : document.getElementById('user').value,
-    //     ...
-    // })
-}).then(
-    response => response.text() // .json(), etc.
-  
-    // same as function(response) {return response.text();}
-).then(
-    html => console.log(html)
-);
+var request = new XMLHttpRequest();
+// POST to httpbin which returns the POST data as JSON
+request.open('POST', url, /* async = */ false);
+request.send(formData);
+console.log(request.response);
     });
     cv.putText(frame, "Nu: "+faces.length , {x:20, y: 20}, cv.FONT_HERSHEY_SIMPLEX, 1.0, [0, 255, 0, 255]);
     cv.imshow(output, frame);
