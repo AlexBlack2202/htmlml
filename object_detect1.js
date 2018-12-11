@@ -58,7 +58,7 @@ for (let i = 0; i < contours.size(); i++) {
 
     if (rect.width<rect.height*1.3) continue;
 
-    faces.push([rect.x,rect.y,rect.width,rect.height]);
+    faces.push(rect);
 }
 gray.delete();
 thresh.delete();
@@ -116,10 +116,34 @@ function captureFrame() {
     console.log('cvt color1 ');
     var faces = detectFaces(frame,frameHSV);
     faces.forEach(function(rect) {
-      cv.rectangle(frame, {x: rect[0], y: rect[1]}, {x: rect[0]+rect[2], y: rect[1] + rect[3]}, [0, 255, 0, 255]);
+      cv.rectangle(frame, {x: rect.x, y: rect.y}, {x: rect.x+rect.width, y: rect.y+ rect.height}, [0, 255, 0, 255]);
     //   var face = frameBGR.roi(rect);
     //   var name = recognize(face);
-     
+    var face = frameBGR.roi(rect);
+    
+    cv.imshow(tmpoutput, face);
+    let base64str = tmpoutput.toDataURL();
+    base64str = base64str.replace("data:image/png;base64,","");
+
+    const url = "http://10.1.36.207:5000/DetectCanNumber";
+
+    var formData = new FormData();
+formData.append('imageurl', base64str);
+fetch(url, {
+    method : "POST",
+    body: formData,
+    // -- or --
+    // body : JSON.stringify({
+    //     user : document.getElementById('user').value,
+    //     ...
+    // })
+}).then(
+    response => response.text() // .json(), etc.
+  
+    // same as function(response) {return response.text();}
+).then(
+    html => console.log(html)
+);
     });
     cv.putText(frame, "Nu: "+faces.length , {x:20, y: 20}, cv.FONT_HERSHEY_SIMPLEX, 1.0, [0, 255, 0, 255]);
     cv.imshow(output, frame);
