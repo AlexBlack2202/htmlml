@@ -14,8 +14,8 @@ function detectFaces(frame,frameHSV) {
     //# define range of blue color in HSV
   //  lower_blue = np.array([110,50,50])
   //  upper_blue = np.array([130,255,255])
-    let low = new cv.Mat(frameHSV.rows, frameHSV.cols, frameHSV.type(), [110,50,50,0]);
-let high = new cv.Mat(frameHSV.rows, frameHSV.cols, frameHSV.type(), [130,255,255,0]);
+    let low = new cv.Mat(frameHSV.rows, frameHSV.cols, frameHSV.type(), [50,50,50,0]);
+let high = new cv.Mat(frameHSV.rows, frameHSV.cols, frameHSV.type(), [90,255,255,0]);
     //# Threshold the HSV image to get only blue colors
     let mask = new cv.Mat();
     // You can try more different parameters
